@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  snowflake-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: snowflake-mcp-server
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      # Snowflake configuration (override with .env file)
+      - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+      - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+      - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
+      - SNOWFLAKE_DATABASE=${SNOWFLAKE_DATABASE}
+      - SNOWFLAKE_SCHEMA=${SNOWFLAKE_SCHEMA}
+      - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
+      - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
+      - SNOWFLAKE_AUTHENTICATOR=${SNOWFLAKE_AUTHENTICATOR:-snowflake}
+    volumes:
+      # Mount for configuration if needed
+      - ./config:/app/config:ro
+    # Note: MCP servers typically communicate via STDIO, not network ports
+    # This setup is primarily for containerized deployment scenarios
+    stdin_open: true
+    tty: true
+
+  # Development service with hot reload
+  snowflake-mcp-server-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: snowflake-mcp-server-dev
+    environment:
+      - NODE_ENV=development
+      - LOG_LEVEL=debug
+    volumes:
+      - .:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    profiles:
+      - dev
