@@ -4,9 +4,23 @@
   "description": "Model Context Protocol server for Snowflake database integration",
   "main": "dist/main.js",
   "type": "module",
+  "author": "Mikdanjey <mikdanjey@gmail.com> (MikdanTech.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikdanjey/snowflake-mcp-server.git"
+  },
   "bin": {
     "snowflake-mcp-server": "dist/main.js"
   },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "snowflake",
+    "database",
+    "llm",
+    "ai"
+  ],
   "scripts": {
     "build": "tsc",
     "build:prod": "npm run clean && npm run lint && npm run test && tsc --sourceMap false",
@@ -41,16 +55,6 @@
     "deploy": "bash scripts/deploy.sh",
     "clear": "rm -rf dist node_modules coverage .scannerwork package-lock.json yarn.lock next-env.d.ts yarn-error.log eslint-report.json output.log snowflake.log error.log"
   },
-  "keywords": [
-    "mcp",
-    "model-context-protocol",
-    "snowflake",
-    "database",
-    "llm",
-    "ai"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.1",
     "dotenv": "16.6.1",
