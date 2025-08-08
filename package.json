@@ -1,6 +1,6 @@
 {
   "name": "snowflake-mcp-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Model Context Protocol server for Snowflake database integration",
   "main": "dist/main.js",
   "type": "module",

@@ -20,6 +20,37 @@ A Model Context Protocol (MCP) server that enables LLM agents to securely connec
 - Access to a Snowflake account
 - Valid Snowflake credentials
 
+## Usage
+
+### Basic MCP Integration
+
+The server exposes a `snowflake.query` resource that accepts SQL queries and returns structured results. Here's how to integrate it with an MCP client:
+
+```json
+{
+  "mcpServers": {
+    "snowflake-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "snowflake-mcp-server"
+      ],
+      "env": {
+        "SNOWFLAKE_ACCOUNT": "NLTFXXX-KB70000",
+        "SNOWFLAKE_USER": "MIKDANJEY",
+        "SNOWFLAKE_DATABASE": "DEMO",
+        "SNOWFLAKE_SCHEMA": "PUBLIC",
+        "SNOWFLAKE_WAREHOUSE": "COMPUTE_WH",
+        "SNOWFLAKE_ROLE": "SYSADMIN",
+        "SNOWFLAKE_AUTHENTICATOR": "snowflake",
+        "SNOWFLAKE_PASSWORD": "HZtJXuz6Efq2MNC",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}
+```
+
 ### Installation
 
 1. **Clone and install dependencies:**
@@ -51,24 +82,6 @@ npm start
 ```
 
 The server will start and listen for MCP protocol messages over STDIO.
-
-## Usage
-
-### Basic MCP Integration
-
-The server exposes a `snowflake.query` resource that accepts SQL queries and returns structured results. Here's how to integrate it with an MCP client:
-
-```typescript
-// Example MCP client usage
-const client = new MCPClient();
-await client.connect();
-
-const response = await client.callResource("snowflake.query", {
-  sql: "SELECT * FROM DEMO.PUBLIC.CUSTOMERS LIMIT 10",
-});
-
-console.log(response.rows);
-```
 
 ### Command Line Usage
 
