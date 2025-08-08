@@ -31,10 +31,7 @@ The server exposes a `snowflake.query` resource that accepts SQL queries and ret
   "mcpServers": {
     "snowflake-mcp-server": {
       "command": "npx",
-      "args": [
-        "-y",
-        "snowflake-mcp-server"
-      ],
+      "args": ["-y", "snowflake-mcp-server"],
       "env": {
         "SNOWFLAKE_ACCOUNT": "NLTFXXX-KB70000",
         "SNOWFLAKE_USER": "MIKDANJEY",
@@ -45,9 +42,9 @@ The server exposes a `snowflake.query` resource that accepts SQL queries and ret
         "SNOWFLAKE_AUTHENTICATOR": "snowflake",
         "SNOWFLAKE_PASSWORD": "HZtJXuz6Efq2MNC",
         "LOG_LEVEL": "info"
-      }
-    }
-  }
+      }
+    }
+  }
 }
 ```
 
