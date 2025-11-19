@@ -208,7 +208,7 @@ describe("MCPServer", () => {
 
   describe("MCP protocol handlers", () => {
     let resourceCallback: Function;
-    let toolCallback: Function;
+    let toolCallback: any;
 
     beforeEach(() => {
       // Extract the callbacks that were registered
